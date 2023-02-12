@@ -5,4 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User = User.create(first_name: "Luke", last_name: "Skywalker", email: "skywalker@gmail.com", password:"wowie123")
+User.delete_all
+user = User.create(first_name: "Luke", last_name: "Skywalker", email: "skywalker@gmail.com", password:"wowie123")
+user2 = User.create(first_name: "Darth", last_name: "Vader", email: "darkforce@gmail.com", password:"wowie123")
+user.save!
+user2.save!
+Friendship.create!(user_id: user.id, friend_id: user2.id)
