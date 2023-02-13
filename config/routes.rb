@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [:create, :destroy, :show]
 
   resources :users, only: [:index]
+
+  get 'profile', to: 'users#show'
 end

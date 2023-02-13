@@ -1,14 +1,13 @@
-<div class="alert alert-info" role="alert"><%= notice %></div>
-
-<h1>Posts</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+<% if notice %>
+  <div class="alert alert-primary" role="alert"><%= notice %></div>
+<% end %>
+<div class="content-grid">
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New post", new_post_path %>
+

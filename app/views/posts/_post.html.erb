@@ -1,5 +1,11 @@
 <div id="<%= dom_id post %>">
   <p>
+    <strong>Author:</strong>
+    <% user = User.find(post.author_id)%>
+    <%= user.first_name + " " + user.last_name %> 
+  </p>
+  
+  <p>
     <strong>Title:</strong>
     <%= post.title %>
   </p>
@@ -7,11 +13,6 @@
   <p>
     <strong>Body:</strong>
     <%= post.body %>
-  </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= post.author_id %>
   </p>
 
 </div>
