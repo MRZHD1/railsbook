@@ -1,0 +1,26 @@
+<% if notice %>
+  <div class="alert alert-primary" role="alert"><%= notice %></div>
+<% end %>
+<h1>Friends</h1>
+<div id="friends">
+  <% current_user.friendships.each do |friendship| %>
+    <% user = User.find(friendship.friend_id) %>
+    <%= render user %>
+    <p>
+      <%= button_to "Remove", friendship, method: :delete %>
+    </p>
+  <% end %>
+</div>
+<h1>Users</h1>
+<div id="users">
+  <% @users.each do |user| %>
+    <% if !current_user.friends.include?(user) && current_user != user %>
+      <%= render user %>
+      <p>
+        <%= button_to "Add #{user.first_name} as a friend.", friendships_path(:friend_id => user.id, method: :post) %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "Home", root_path %>
