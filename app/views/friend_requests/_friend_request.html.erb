@@ -1,0 +1,8 @@
+<div id="<%= dom_id friend_request %>">
+  <div class="card-body" style="display:flex;align-items: center;">
+    <% sender = User.find(friend_request.sender_id) %>
+    <h6><%= render sender %></h6>
+    <%= button_to "Accept", friend_request_accept_path(:friend_request_id => friend_request.id, method: :post), {class:"btn btn-secondary btn-sm", style: "margin-left:15px;margin-right:5px"} %>
+    <%= button_to "Deny", friend_request_deny_path(:friend_request_id => friend_request.id, method: :post), {class:"btn btn-secondary btn-sm"}  %>
+  </div>
+</div>

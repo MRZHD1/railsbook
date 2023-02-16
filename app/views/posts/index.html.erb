@@ -2,11 +2,47 @@
 <% if notice %>
   <div class="alert alert-primary" role="alert"><%= notice %></div>
 <% end %>
-<div class="content-grid">
+<div class="content-grid" style="margin-left:15px;margin-right:15px;">
+  <div class="leftbar">
+    <div class="card ">
+      <div class="notifications">
+        <h5 class="card-header">Friend Requests (<%= current_user.friend_requests.length %>)</h5>
+        <% current_user.friend_requests.each do |request| %>
+          <%= render request %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div id="posts">
     <% @posts.each do |post| %>
       <%= render post %>
     <% end %>
+  </div>
+
+  <div class="sidebar">
+    <div class="card">
+      <div class="friends">
+        <h5 class="card-header"style="">Friends (<%= current_user.friends.length %>) </h5>
+        <ul class="list-group list-group-flush">
+        <% if current_user.friends.empty? %>
+          <div style="margin-top:10px;margin-bottom:10px">You have no friends yet. Try adding some by clicking below.</div>
+        <% else %>
+          <% current_user.friends.first(5).each do |friend| %>
+            <% if friend.nil? %>
+              return
+            <% else %>
+              <li class="list-group-item">
+              <%= render friend %>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>        
+        </ul>
+        <div class="card-footer text-muted">
+          <a class="nav-link" href="/users">See all users</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

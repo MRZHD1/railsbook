@@ -1,18 +1,14 @@
 <div id="<%= dom_id post %>">
-  <p>
-    <strong>Author:</strong>
-    <% user = User.find(post.author_id)%>
-    <%= user.first_name + " " + user.last_name %> 
-  </p>
-  
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= post.body %>
-  </p>
-
+  <div class="card" style="">
+    <h5 class="card-title"><%= post.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <% if post.author_id == current_user.id %>
+        Posted by you
+      <% else %>
+        <% author = User.find(post.author_id)%>
+        Posted by <%= author.first_name + " " + author.last_name%>
+      <% end %>
+    </h6>
+    <p class="card-text"><%= post.body %></p>
+  </div>
 </div>

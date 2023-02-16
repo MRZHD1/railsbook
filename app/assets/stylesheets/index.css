@@ -1,4 +1,18 @@
 .content-grid {
-  margin-left:20%;margin-right:20%;margin-top:20px;
+  margin-top:20px;
   display: grid;
+  grid-template: 1fr / 1fr 2fr 1fr;
+  column-gap: 20px;
+}
+
+.card {
+  padding:20px;margin:10px;
+  box-shadow: rgba(192, 192, 192, 0.35) 0px 5px 15px;  
+}
+
+.line {
+  width: 80%;
+  background-color: rgb(207, 207, 207);
+  height: 1px;
+  align-self: center;
 }

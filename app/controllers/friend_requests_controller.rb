@@ -9,4 +9,10 @@ class FriendRequestsController < ApplicationController
     @request = FriendRequest.find(params[:id])
     @request.destroy
   end
+
+  def accept
+  end
+
+  def deny
+  end
 end
