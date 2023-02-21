@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :posts do
     get 'comments' => "posts#comments"
   end
+  get '/user/:id', to: 'users#show', as: 'user'
+  get 'profile', to: 'users#show'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,7 +17,5 @@ Rails.application.routes.draw do
     post 'deny' => "friend_requests#deny"
   end
 
-  resources :users, only: [:index, :show]
-
-  get 'profile', to: 'users#show'
+  resources :users, only: [:index]
 end
