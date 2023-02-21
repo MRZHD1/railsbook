@@ -3,6 +3,5 @@ class FriendRequest < ApplicationRecord
 
 
   def after_create
-    puts "Created FRQ"
   end
 end

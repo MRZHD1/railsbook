@@ -17,3 +17,4 @@ user5 = User.create(first_name: "Bestie", last_name: "Man", email: "bestie@examp
 friendship2 = Friendship.create(user_id: user.id, friend_id: user5.id)
 post2 = Post.create(author_id: user5.id, title: "Second post of the day 😀", body: "Here is a better post, the one before was mediocre in comparison. I am the post boom.")
 comment = Comment.create(author_id: user3.id, post_id: post.id, body: "Cool post!")
+like = Like.create(user_id: user.id, post_id: post.id)

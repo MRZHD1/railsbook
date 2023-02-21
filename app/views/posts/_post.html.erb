@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <div id="<%= dom_id post %>">
   <div class="card" style="">
     <h5 class="card-title"><%= post.title %></h5>
@@ -10,6 +11,22 @@
       <% end %>
     </h6>
     <p class="card-text"><%= post.body %></p>
+    <div class="likes" style="display:flex;justify-content: flex-end;padding-left:10px;">
+      <% if post.likes.where(user_id: current_user.id, post_id: post.id).empty? %>
+        <%= post.likes.length %>
+        <span class="material-symbols-outlined">
+          <%= button_to "favorite", likes_path(:post_id => post.id, method: :post), class: "like_button" %>
+        </span>      
+      <% else %>
+        <% like = Like.find(Like.where(user_id: current_user.id, post_id: post.id)[0].id)%>
+        <%= post.likes.length %>
+        <span class="material-symbols-outlined">
+          <%= button_to "heart_minus", like, method: :delete, class: "like_button" %>
+        </span> 
+        
+      <% end %>
+    </div>
+    
     <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#<%= dom_id post %>-modal">
       Open Comments
     </button>
