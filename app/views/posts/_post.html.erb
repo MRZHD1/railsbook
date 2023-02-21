@@ -10,5 +10,45 @@
       <% end %>
     </h6>
     <p class="card-text"><%= post.body %></p>
+    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#<%= dom_id post %>-modal">
+      Open Comments
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="<%= dom_id post %>-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Post <%= post.id %></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card" style="">
+            <h5 class="card-title"><%= post.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <% if post.author_id == current_user.id %>
+                Posted by you
+              <% else %>
+                <% author = User.find(post.author_id)%>
+                Posted by <%= author.first_name + " " + author.last_name%>
+              <% end %>
+            </h6>
+            <p class="card-text"><%= post.body %></p>
+          </div>
+          <h6 style="margin-top:20px;">Comments: </h6>
+          <%= turbo_stream_from post, :comments %>
+          <div id="<%= dom_id(post, :comments) %>">
+            <%= render post.comments %>
+          </div>
+        </div>
+        <div class="modal-footer" style="">
+          <% @comment = Comment.new %>
+          <%= render 'comment_form', comment: @comment, post: post %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
