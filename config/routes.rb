@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     post 'deny' => "friend_requests#deny"
   end
 
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
 
   get 'profile', to: 'users#show'
 end

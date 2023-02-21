@@ -1,3 +1,10 @@
-<div id="<%= dom_id comment %>">
-  <%= comment.body %>
+<div id="<%= dom_id comment %>" style="display: grid;grid-template: 1fr / 3fr 1fr;gap:max;align-items: center;">
+  <% author = User.find(comment.author_id) %>
+  <div class="comment">
+    <b><%= author.first_name %>:</b>
+    <%= comment.body %>
+  </div>
+  <div class="time" style="width:125px">
+    <%= comment.created_at.to_formatted_s(:short) %> UTC
+  </div>
 </div>
