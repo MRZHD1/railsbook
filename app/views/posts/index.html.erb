@@ -15,7 +15,9 @@
   </div>
   <div id="posts">
     <% @posts.each do |post| %>
-      <%= render post %>
+      <% if current_user.friends.include?(post.author) || current_user.posts.include?(post) %>
+        <%= render post %>
+      <% end %>
     <% end %>
   </div>
 
