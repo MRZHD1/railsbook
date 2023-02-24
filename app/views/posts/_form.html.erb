@@ -1,32 +1,18 @@
-<%= form_with(model: post, remote: true) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="card" style="">
+  <h5 class="card-title" style="text-align:center;"> Welcome to Railsbook, <%= current_user.first_name %>.</h5>
+  <%= form_for :post do |form| %>
+    <div class="">
+      <div class="col-auto" style="width:33%;margin-bottom:10px;margin-top:10px;">
+        <%= form.text_field :title, class: "form-control", placeholder: "Title" %>
+      </div>
+      <div style="display:flex;align-items: center;">
+        <div class="col-auto" style="flex-grow: 1;">
+          <%= form.text_area :body, class: "form-control", placeholder: "What's on your mind?" %>
+        </div>
+        <div class="" style="margin-left:10px;padding-top:15px;padding-bottom:15px;">
+          <%= form.submit :class => 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_field :body %>
-  </div>
-
-  <div>
-    <%= form.label :author_id, style: "display: block" %>
-    <%= form.number_field :author_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

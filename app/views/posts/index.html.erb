@@ -14,7 +14,8 @@
     </div>
   </div>
   <div id="posts">
-    <% @posts.each do |post| %>
+    <%= render "form" %>
+    <% @posts.order('created_at DESC').each do |post| %>
       <% if current_user.friends.include?(post.author) || current_user.posts.include?(post) %>
         <%= render post %>
       <% end %>
@@ -31,7 +32,7 @@
         <% else %>
           <% current_user.friends.first(5).each do |friend| %>
             <% if friend.nil? %>
-              return
+              <% return %>
             <% else %>
               <li class="list-group-item">
                 <%= render friend %>
